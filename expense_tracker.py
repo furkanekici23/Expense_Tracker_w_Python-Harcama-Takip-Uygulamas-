@@ -1,7 +1,7 @@
 from datetime import datetime
 import pytz , os
 
-# Türkiye saat dilimi
+# Türkiye saat dilimi / Turkey Time Zone
 istanbul = pytz.timezone("Europe/Istanbul")
 
 def clear():
@@ -10,7 +10,7 @@ def clear():
 global type_of_expense
 global amount
 global expenses
-expenses = open("D:\Masaüstü\CODİNG\python\my_kivy\expenses.txt","a+")
+expenses = open("D:\Masaüstü\CODİNG\python\my_kivy\expenses.txt","a+") # You should paste the path you pasted the expenses.txt inside the o"pen" function.
 
 def input_expense(expenses=expenses):
     tarih_tr = datetime.now(istanbul)
@@ -34,7 +34,7 @@ def input_expense(expenses=expenses):
         return
 
 def show_all_expenses(expenses=expenses):
-    expenses.seek(0)  # Dosyanın başına dön
+    expenses.seek(0)  # Dosyanın başına dön / Return to the beginning of the file
     print("Recorded Expenses:")
     for line in expenses:
         print(line.strip())
@@ -44,7 +44,7 @@ def close_expenses_file(expenses=expenses):
     print("Expenses file closed.")
 
 def show_expenses_by_type(expense_type):
-    expenses.seek(0)  # Dosyanın başına dön
+    expenses.seek(0)  # Dosyanın başına dön / Return to the beginning of the file
     print(f"Expenses of type '{expense_type}':")
     x1=0
     for line in expenses:
@@ -76,12 +76,12 @@ def show_total_expenses_by_type(expense_type):
     for line in expenses:
         parts = line.strip().split(' - ')
         if len(parts) < 4:
-            continue  # format uymayan satırı atla
+            continue  # format uymayan satırı atla / skip line that does not match the format
 
         date_str, amount_str, explanation, payment_type = parts
 
-        # payment_type örn: "card: garanti" veya "cash"
-        # expense_type filtrelemesi için:
+        # payment_type örnek / example : "card: garanti" veya "cash"
+        # expense_type filtrelemesi için: / Forexpense_type filtering:
         if expense_type in payment_type.lower():
             try:
                 total += float(amount_str)
@@ -98,7 +98,7 @@ def show_total_expenses_by_type(expense_type):
             for line in expenses:
                 parts = line.strip().split(' - ')
                 if len(parts) < 4:
-                    continue  # format uymayan satırı atla
+                    continue  # format uymayan satırı atla / skip line that does not match the format
 
                 date_str, amount_str, explanation, payment_type = parts
                 if card_name.lower() in line.lower():
@@ -118,7 +118,7 @@ while True:
       \n5) Exit The Tracker ")
     
     choice=int(input("Choice an option from above : "))
-    # print("Note :  ")
+    
     if choice not in [1,2,3,4,5] or type(choice) != int:
         print("Please choice one of options which mentioned above")
         continue
